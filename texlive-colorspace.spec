@@ -1,6 +1,6 @@
 Name:		texlive-colorspace
 Version:	50585
-Release:	1
+Release:	2
 Summary:	Provides PDF color spaces
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/colorspace
