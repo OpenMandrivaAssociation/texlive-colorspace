@@ -1,37 +1,24 @@
-Name:		texlive-colorspace
-Version:	50585
-Release:	2
+%global tl_name colorspace
+%global tl_revision 79618
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.3
+Release:	%{tl_revision}.1
 Summary:	Provides PDF color spaces
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/colorspace
 License:	mit
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/colorspace.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/colorspace.doc.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/colorspace.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/colorspace.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-The package provides PDF color spaces. Currently, only spot
-colors and overprinting are supported. It requires xcolor, and
-supports pdfTeX and LuaTeX.
+The package provides PDF color spaces. Currently, only spot colors and
+overprinting are supported. It requires xcolor, and supports pdfTeX and
+LuaTeX.
 
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%{_texmfdistdir}/tex/latex/colorspace
-%doc %{_texmfdistdir}/doc/latex/colorspace
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
